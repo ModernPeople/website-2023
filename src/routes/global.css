@@ -1,0 +1,59 @@
+@font-face {
+	font-family: MessinaSans;
+	src: url(/fonts/PPNeueMachina-InktrapRegular.otf) format("opentype");
+	font-weight: 500;
+	font-style: normal;
+}
+
+html, body {
+    font-family: MessinaSans, system-ui, sans-serif;
+
+    background-color: var(--black-bean-burgandy);
+    line-height: 1.1;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:visited {
+    color: inherit;
+}
+
+a:hover {
+    color: var(--black-bean-burgandy);
+}
+
+p {
+    margin: 1em 0;
+}
+
+.primary, .secondary {
+    max-width: 30ch;
+    font-size: clamp(16px, 4vmin, 48px);
+}
+
+.secondary {
+    font-size: 85%;
+}
+
+ol {
+    list-style: none;
+    padding: 0;
+}
+li {
+    display: inline;
+}
+
+button.svg-button {
+    border: none;
+    background: none;
+    padding: 0;
+}

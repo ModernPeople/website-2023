@@ -1,0 +1,56 @@
+<script lang="ts">
+    import { page } from '$app/stores';
+    $: currentPath = $page.url.pathname;
+
+    import Circle from "$icons/circle.svg?component";
+
+    const items = [
+        {path: "/work", title: "Work"},
+        {path: "/about", title: "About"},
+        {path: "/contact", title: "Contact"},
+        {path: "/press", title: "Press"},
+    ]
+</script>
+
+<nav>
+    <ol>
+        {#each items as item}
+            <li>
+                <a on:click class:active={currentPath == item.path} href={item.path}>{item.title}</a>
+                {#if currentPath == item.path}
+                    <Circle width=".65em" height=".65em" color="var(--black)"/>
+                {/if}
+            </li>
+        {/each}
+    </ol>
+</nav>
+
+<style>
+    nav {
+        height: 100%;
+        padding: 2rem;
+		padding-top: 3em;
+		padding-right: 3em;
+		
+        color: var(--white);
+		background-color: var(--international-orange);
+        
+        font-size: clamp(38px, 6vmin, 96px);
+	}
+
+    nav ol {
+        display: flex;
+        flex-direction: column;
+		gap: 1rem;
+    }
+
+	ol li {
+		display: flex;
+        align-items: baseline;
+        gap: 1rem;
+	}
+
+	nav .active {
+		color: var(--black);
+	}
+</style>

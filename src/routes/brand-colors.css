@@ -1,0 +1,26 @@
+/* Modern People Brand Colors 
+   from "Modern People Brand Deck.pdf"
+*/
+
+/* sRGB color. */
+:root {
+    /* Grays */
+    --white: white;
+    --black: black;
+    --light-gray: rgb(236, 236, 236); /* #ececec */
+    --medium-gray: rgb(159, 159, 159); /* #9f9f9f */
+
+    /* Brand colors */
+    --international-orange: rgb(255, 79, 0); /* #ff4f00 */
+    --black-bean-burgandy: rgb(68, 0, 0); /* #444444 */
+    --arctic-lime: rgb(217, 255, 69); /* #d9ff45 */
+}
+
+/* Display-P3 color, when supported. */
+@supports (color: color(display-p3 1 1 1)) {
+    :root {
+        --international-orange: color(display-p3 1 0.31 0);
+        --black-bean-burgandy: color(display-p3 .25 0 0);
+        --arctic-lime: color(display-p3 .85 1 .27);
+    }
+}
