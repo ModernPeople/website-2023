@@ -8,7 +8,6 @@
         {path: "/work", title: "Work"},
         {path: "/about", title: "About"},
         {path: "/contact", title: "Contact"},
-        {path: "/press", title: "Press"},
     ]
 </script>
 
@@ -22,13 +21,16 @@
                 {/if}
             </li>
         {/each}
+        <li>
+            <a href="https://medium.com/@ModernPeople" target="_blank" title="Modern People on Medium">Press…</a>
+        </li>
     </ol>
 </nav>
 
 <style>
     nav {
         height: 100%;
-        padding: 2rem;
+        padding: var(--padding);
 		padding-top: 3em;
 		padding-right: 3em;
 		

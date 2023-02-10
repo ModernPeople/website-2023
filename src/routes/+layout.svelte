@@ -3,10 +3,11 @@
 	import './reset.css';
 	import './global.css';
 	import './brand-colors.css';
+	import '@mux/mux-video';
 
-	import { PageTransitionController, fade } from 'sveltekit-page-transitions'
+	// import { PageTransitionController, fade } from 'sveltekit-page-transitions'
 </script>
 
-<PageTransitionController transition={fade}> 
+<!-- <PageTransitionController transition={fade}>  -->
 	<slot></slot>
-</PageTransitionController>
+<!-- </PageTransitionController> -->

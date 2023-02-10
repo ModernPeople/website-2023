@@ -15,13 +15,13 @@
 	}
 </script>
 
-<PageTransition>
+<!-- <PageTransition> -->
 	<div class="container">
 		<div class="inner">
 			<LogotypeColor style="max-width: max(200px, 50vw)"/>
 		</div>
 	</div>
-</PageTransition>
+<!-- </PageTransition> -->
 
 <style>
 	/* vertical & horizontal centering via nested flexboxes without requiring CSS grid */

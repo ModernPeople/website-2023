@@ -13,11 +13,14 @@
 
 <style>
     footer {
+		/* position: fixed; */
+		/* bottom: 0; */
+		width: 100%;
 		z-index: 1;
         
 		display: flex;
-		gap: 2rem;
-		padding: .5rem 2rem .25rem 2rem;
+		gap: var(--padding);
+		padding: .5rem var(--padding) .25rem var(--padding);
 		
 		font-size: 1rem;
 		text-transform: uppercase;
@@ -33,6 +36,6 @@
 	footer > ol {
 		display: flex;
 		flex-direction: row;
-		gap: 2rem;
+		gap: var(--padding);
 	}
 </style>

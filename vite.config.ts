@@ -16,9 +16,16 @@ const svgOptions = {
 	}
 };
 
+// https://github.com/zerodevx/svelte-img
+import { imagetools } from '@zerodevx/svelte-img/vite'
+const imagetoolOptions = {
+
+}
+
 const config: UserConfig = {
 	plugins: [
 		sveltekit(),
+		imagetools(imagetoolOptions),
 		svg(svgOptions),
 	]
 };

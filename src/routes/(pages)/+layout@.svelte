@@ -19,16 +19,14 @@
 		<button on:click={()=> sidebar = !sidebar} class="svg-button">
 			<MenuIcon />
 		</button>
-		<Logotype class="logo" width="200" height="auto"></Logotype>
+		<Logotype width="200" class="logo"></Logotype>
 	</header>
 
 	<aside class:sidebar>
 		<Navigation on:click={()=> sidebar = false}/>
 	</aside>
 
-	<main>
-		<slot></slot>
-	</main>
+	<slot></slot>
 
 	<Footer/>
 </div>
@@ -38,31 +36,60 @@
 
 	/* Grid */
 	.container {
-		height: 100%;
+		height: 100vh;
 		height: -webkit-fill-available;
-		display: flex;
-		flex-direction: column;
+		max-height: -webkit-fill-available;
+		background-color: var(--white);
+
+		gap: var(--padding);
+
+		display: grid;
+		grid-template-areas: 
+			"header"
+			"main"
+			"footer";
+		grid-template-rows: 
+			min-content 
+			minmax(0, 1fr)
+			min-content;
 	}
 
 	/* Styles */
 
-	header, main {
-		background-color: var(--white);
-		padding: 2rem;
-	}
-
-	main {
+	/* main {
 		font-size: 1.75rem;
 		height: 100%;
+		max-height: 100%;
 		overflow-y: scroll;
 		flex: 1;
-	}
+
+		grid-area: main;
+
+		display: flex;
+		flex-flow: column;
+
+		padding: 0 2rem;
+	} */
 
 	header {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-around;
+
+		background-color: var(--white);
+
+		/* Grid */
+		grid-area: header;
+		margin-top: var(--padding);
+		padding: 0 var(--padding);
+	}
+
+	/* use of global is need here because `class` 
+	   is not recognized on components… *sigh* */
+	header :global(.logo) {
+		/* Keep logo from overlapping with `absolute`ly positioned button */
+		margin: 0 calc(2.5 * var(--padding));
 	}
 
 	aside {
@@ -78,7 +105,9 @@
 	.svg-button {
 		z-index: 1;
 		position: absolute;
-		left: 2rem;
+		left: var(--padding);
+		width: max(var(--padding), 1.5rem);
+		height: auto;
 	}
 	.svg-button:hover {
 		/* margin: -.5rem; */
@@ -86,4 +115,14 @@
 		/* background-color: var(--light-gray); */
 		color: var(--black-bean-burgandy);
 	}
+/* 
+	@media (min-width: 768px) {
+		main {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 1fr;
+			grid-auto-flow: column;
+			gap: var(--padding);
+		}
+	} */
 </style>

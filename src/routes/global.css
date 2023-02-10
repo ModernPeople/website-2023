@@ -1,22 +1,55 @@
 @font-face {
-	font-family: MessinaSans;
-	src: url(/fonts/PPNeueMachina-InktrapRegular.otf) format("opentype");
+	font-family: NeueMachinaInktrap;
+	src: 
+        url(/fonts/PPNeueMachina-InktrapRegular.woff2) format("woff2"),
+        url(/fonts/PPNeueMachina-InktrapRegular.woff) format("woff"),
+        url(/fonts/PPNeueMachina-InktrapRegular.otf) format("opentype"),
+        url(/fonts/PPNeueMachina-InktrapRegular.ttf) format("truetype");
 	font-weight: 500;
 	font-style: normal;
 }
 
-html, body {
-    font-family: MessinaSans, system-ui, sans-serif;
+body {
+    font-family: NeueMachinaInktrap, system-ui, sans-serif;
 
-    background-color: var(--black-bean-burgandy);
+    background-color: var(--international-orange);
     line-height: 1.1;
+    --padding: clamp(1rem, 4vw,2rem);
 }
 
-img,
+/* img,
 svg {
   max-width: 100%;
+  max-height: 100%;
   height: auto;
+  object-fit: cover;
+} */
+
+img {
+  display: block;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
 }
+
+/* questionably global - what am, I missing? */
+/* .four-up :nth-child(even) {
+    justify-self: start;
+} */
+
+/* questionably global - what am, I missing? */
+/* .hero picture {
+    height: 100%;
+    object-fit: contain;
+} */
+
+/* questionably global - what am, I missing? */
+/* .images img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    object-fit: cover;
+} */
 
 a {
     text-decoration: none;
@@ -41,7 +74,7 @@ p {
 }
 
 .secondary {
-    font-size: 85%;
+    font-size: clamp(14px, 3.5vmin, 40px);;
 }
 
 ol {
@@ -56,4 +89,32 @@ button.svg-button {
     border: none;
     background: none;
     padding: 0;
+}
+
+.images.two-column {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+section .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (min-width: 480px) {
+    .images.two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: min-content;
+    }
+    .images.two-column > * {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+    .images.two-column .span-2 {
+        grid-column: span 2;
+    }
 }
