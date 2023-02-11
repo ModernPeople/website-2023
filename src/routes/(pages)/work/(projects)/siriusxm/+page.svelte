@@ -12,6 +12,10 @@
 
 
 <section class="page" id="page-1">
+	<div class="info">
+		<h1>SXM Media</h1>
+		<p>Brand, experience and motion design for Advertising Week activation</p>
+	</div>
 	<div class="hero">
 		<mux-player
 			stream-type="on-demand"
@@ -35,12 +39,6 @@
 </section>
 
 <section class="page" id="page-3">
-	<!-- <div class="images">
-		<Img src={booth1}/>
-		<Img src={booth2}/>
-		<Img src={booth3}/>
-		<Img src={booth4}/>
-	</div> -->
 	<div class="hero">
 		<Img src={event}/>
 	</div>
@@ -63,49 +61,5 @@
 
 
 <style>
-	section {
-		scroll-snap-align: start;
-		/* only supported in Chrome */
-		scroll-snap-stop: always;
-
-		width: 100%; /* change to <1 to see a "preview" of the next section */
-		
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 
-			1fr 
-			min-content;
-		gap: 1rem;
-		justify-items: center;
-	}
-
-	.hero {
-		grid-column: 1 / -1;
-	}
-
-	.hero :global(picture),
-	.hero :global(mux-player),
-	.hero :global(mux-video) {
-		height: 100%;
-	}
-
-	.hero :global(img) {
-		background-size: contain !important;
-	}
-
-	.images {
-		justify-self: center;
-		grid-column: 1 / -1;
-
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-	}
-
-	/* .images :global(img) {} */
-
-	.description {
-		line-height: 1.5;
-		grid-column: 2/3;
-		grid-row: -2/-1;
-	}
+	
 </style>

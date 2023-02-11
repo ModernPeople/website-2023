@@ -1,24 +1,32 @@
 <script>
 	import Img from '@zerodevx/svelte-img';
 
-	// import toolkit from './SXM_Toolkit_Gang.jpg?run';
-	// import event from './SXM_Event.jpg?run';
+	import phantogram from './Phantogram.jpg?run';
 
-	// import booth1 from './SXM_Media_Booth1.jpg?run';
-	// import booth2 from './SXM_Media_Booth2.jpg?run';
-	// import booth3 from './SXM_Media_Booth3.jpg?run';
-	// import booth4 from './SXM_Media_Booth4.jpg?run';
+	import layer1 from './Layer 10.png?run';
+	import layer2 from './Layer 20.png?run';
+	import layer3 from './Layer 30.png?run';
+	import layer4 from './Layer 40.png?run';
+	import layer5 from './Layer 50.png?run';
+	import layer6 from './Layer 60.png?run';
+	import layer7 from './Layer 70.png?run';
+	import layer8 from './Layer 80.png?run';
+	import layer9 from './Layer 90.png?run';
+	import layer10 from './Layer 100.png?run';
+	import layer11 from './Layer 110.png?run';
+	import layer12 from './Layer 120.png?run';
+	import layer13 from './Layer 130.png?run';
+	
 </script>
 
 
 <section class="page" id="page-1">
+	<div class="info">
+		<h1>You Don't Get Me High Anymore - Republic Records</h1>
+		<p>Art direction, design and content production for an iconic band with a high end visual style</p>
+	</div>
 	<div class="hero">
-		<!-- <mux-player
-			stream-type="on-demand"
-			playback-id="nHOLot4wCZ4v1tGBxSF5zgD79RslO61hLZt02u4JaSng"
-			primary-color="#FFFFFF"
-			secondary-color="#000000">
-		</mux-player> -->
+		<Img src={phantogram}/>
 	</div>
 	<p class="description">
 		It was important for the iconic band Phantogram to set a visual standard at the beginning of their new release. The idea was to introduce high-end typography into a ‘user-generated’ format like the lyric video, and create a creative beacon for the audience to follow.
@@ -27,7 +35,7 @@
 
 <section class="page" id="page-2">
 	<div class="hero">
-		<!-- <Img src={toolkit}/> -->
+		<Img src={layer1}/>
 	</div>
 	<p class="description">
 		Under Modern People partner Can Misirlioglu’s direction, a visual identity and art direction was created specifically for this chapter of the band’s journey to fame.
@@ -36,7 +44,7 @@
 
 <section class="page" id="page-3">
 	<div class="hero">
-		<!-- <Img src={event}/> -->
+		<Img src={layer2}/>
 	</div>
 	<p class="description">
 		Imagining the powerfully personal lyrics of the song in different applications, a rich, highly textured visual world was established. 
@@ -45,7 +53,7 @@
 
 <section class="page" id="page-4">
 	<div class="hero">
-		<!-- <Img src={event}/> -->
+		<Img src={layer3}/>
 	</div>
 	<p class="description">
 		Combining all the elements together, a design-forward, animated music video was produced, and it became the first visual expression of the band for their new release which informed the subsequent releases. Millions of views later, it remains a highlight moment in the band’s prolific output.
@@ -54,49 +62,5 @@
 
 
 <style>
-	section {
-		scroll-snap-align: start;
-		/* only supported in Chrome */
-		scroll-snap-stop: always;
-
-		width: 100%; /* change to <1 to see a "preview" of the next section */
-		
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 
-			1fr 
-			min-content;
-		gap: 1rem;
-		justify-items: center;
-	}
-
-	.hero {
-		grid-column: 1 / -1;
-	}
-
-	.hero :global(picture),
-	.hero :global(mux-player),
-	.hero :global(mux-video) {
-		height: 100%;
-	}
-
-	.hero :global(img) {
-		background-size: contain !important;
-	}
-
-	.images {
-		justify-self: center;
-		grid-column: 1 / -1;
-
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-	}
-
-	/* .images :global(img) {} */
-
-	.description {
-		line-height: 1.5;
-		grid-column: 2/3;
-		grid-row: -2/-1;
-	}
+	
 </style>

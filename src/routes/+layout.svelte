@@ -3,7 +3,7 @@
 	import './reset.css';
 	import './global.css';
 	import './brand-colors.css';
-	import '@mux/mux-video';
+	// import '@mux/mux-player';
 
 	// import { PageTransitionController, fade } from 'sveltekit-page-transitions'
 </script>

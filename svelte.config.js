@@ -18,6 +18,7 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			'$icons': 'src/icons',
+			'$components/*': 'src/lib/components/*',
 		}
 	}
 };

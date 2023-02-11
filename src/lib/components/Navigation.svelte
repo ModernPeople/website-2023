@@ -15,8 +15,8 @@
     <ol>
         {#each items as item}
             <li>
-                <a on:click class:active={currentPath == item.path} href={item.path}>{item.title}</a>
-                {#if currentPath == item.path}
+                <a on:click class:active={currentPath.startsWith(item.path)} href={item.path}>{item.title}</a>
+                {#if currentPath.startsWith(item.path)}
                     <Circle width=".65em" height=".65em" color="var(--black)"/>
                 {/if}
             </li>

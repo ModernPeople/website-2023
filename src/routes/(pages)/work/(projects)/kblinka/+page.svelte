@@ -12,6 +12,10 @@
 
 
 <section class="page" id="page-1">
+	<div class="info">
+		<h1>Kblinka</h1>
+		<p>Brand design for a social impact oriented DAO</p>
+	</div>
 	<div class="hero">
 		<!-- <mux-player
 			stream-type="on-demand"
@@ -67,7 +71,7 @@
 
 	.hero :global(picture),
 	.hero :global(mux-player),
-	.hero :global(mux-video) {
+	.hero :global(mux-player) {
 		height: 100%;
 	}
 

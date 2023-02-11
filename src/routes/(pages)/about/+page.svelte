@@ -1,10 +1,11 @@
 <script>
-	import Circle from '$icons/circle.svg?component';
-	// import robothead from "$icons/robot-head.svg?url";
+	// import Circle from '$icons/circle.svg?component';
+	import robothead from "$icons/robot-head.svg?url";
+	import Circle from "$components/Circle.svelte";
 </script>
 
 <main class="background">
-	<Circle height="20px" width="20px" color="var(--international-orange)" />
+	<Circle color="var(--international-orange)" />
 
 	<p class="primary">
 		We are an interdisciplinary design studio creating the future with bold and functional visual
@@ -26,10 +27,10 @@
 	.background {
 		flex: 1;
 
-		padding: 0 var(--padding);
+		padding: var(--padding);
 
 		background-color: var(--white);
-		background-image: url(/robot-head-angled.svg);
+		background-image: url({robothead});
 		background-repeat: no-repeat;
 		background-position-x: 15vw;
 		background-size: cover;

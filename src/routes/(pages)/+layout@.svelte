@@ -1,5 +1,5 @@
 <script>
-	import { PageTransition } from 'sveltekit-page-transitions'
+	// import { PageTransition } from 'sveltekit-page-transitions'
 	
 	import MenuIcon from "$icons/menu.svg?component";
 	import Logotype from "$icons/logotype.svg?component";
@@ -13,7 +13,7 @@
 	let sidebar = false;
 </script>
 
-<PageTransition>
+<!-- <PageTransition> -->
 <div class="container">
 	<header>
 		<button on:click={()=> sidebar = !sidebar} class="svg-button">
@@ -30,7 +30,7 @@
 
 	<Footer/>
 </div>
-</PageTransition>
+<!-- </PageTransition> -->
 
 <style>
 
@@ -41,7 +41,7 @@
 		max-height: -webkit-fill-available;
 		background-color: var(--white);
 
-		gap: var(--padding);
+		gap: 0;
 
 		display: grid;
 		grid-template-areas: 
@@ -81,8 +81,7 @@
 
 		/* Grid */
 		grid-area: header;
-		margin-top: var(--padding);
-		padding: 0 var(--padding);
+		padding: var(--padding);
 	}
 
 	/* use of global is need here because `class` 
@@ -97,13 +96,14 @@
 		left: -500px;
 		transition: all .25s;
 		height: 100%;
+		z-index: 100;
 	}
 	aside.sidebar {
 		left: 0px
 	}
 
 	.svg-button {
-		z-index: 1;
+		z-index: 200;
 		position: absolute;
 		left: var(--padding);
 		width: max(var(--padding), 1.5rem);

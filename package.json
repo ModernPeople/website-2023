@@ -28,6 +28,7 @@
 		"sass": "^1.57.1",
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
+		"svelte-textfit": "^1.1.4",
 		"sveltekit-page-transitions": "^0.0.8",
 		"tslib": "^2.4.1",
 		"typescript": "^4.9.3",
