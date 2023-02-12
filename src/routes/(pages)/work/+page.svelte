@@ -7,13 +7,14 @@
 	import { work_index } from '../../../stores';
 	const [send, receive] = crossfade({ duration: 500 });
 
-	import Circle from '$icons/circle.svg?component';
+	import Circle from "$components/Circle.svelte";
 
 	import HbomaxPreview from './(projects)/hbomax/Preview.svelte';
 	import CFRUPreview from './(projects)/cfru/Preview.svelte';
 	import SiriusXMPreview from './(projects)/siriusxm/Preview.svelte';
 	import PhantogramPreview from './(projects)/phantogram/Preview.svelte';
-	import { onMount, afterUpdate, beforeUpdate } from 'svelte';
+	import { onMount, afterUpdate, beforeUpdate, onDestroy } from 'svelte';
+	import { updated } from '$app/stores';
 
 	let projects = [
 		{ slug: 'siriusxm', name: 'SiriusXM', preview: SiriusXMPreview },
@@ -42,8 +43,13 @@
 	let intervalID = null;
 
 	onMount(start_cycling)
+	onDestroy(() => {
+		clearInterval(intervalID);
+		intervalID = null;
+	})
 
 	function start_cycling() {
+		clearInterval(intervalID);
 		intervalID = setInterval(next, 3000);
 	}
 
@@ -62,6 +68,7 @@
 
 	function mouseenter(index) {
 		clearInterval(intervalID);
+		intervalID = null;
 		$work_index = index;
 	}
 	function mouseleave(_) {
@@ -70,64 +77,39 @@
 
 	let container_tag = null;
 	let projects_height = 0;
-	let main_height = 0;
-	// let fontSize = 2.8;
-	// let lineHeight = 1.12;
-	// let step = 0;
-	// const padding = 32; // 2rem, via var(--padding); TODO could read out I believe?
 
-	// let newStep, newFontSize;
-	// $: {
-	// 	if (projects_height <= 0.0 || main_height <= 0.0 || projects_tag == null) {
-	// 		// console.log("precondition not yet satisfied")
-	// 	} else {
-	// 		let ratio = projects_height / (main_height - padding);
-	// 		console.log(`(${ratio})`);
-
-	// 		newFontSize = (fontSize/ratio);
-	// 		newStep = newFontSize - fontSize;
-	// 		fontSize = fontSize + .1*newStep + .1*step;
-	// 		step = newStep;
-	// 		// lineHeight = Math.max(.5*(lineHeight/ratio) + .5*lineHeight, .9);
-	// 		let height_remaining_in_container = main_height - projects_height;
-
-	// 		console.log(`Ph: ${projects_height}, Mh: ${main_height}, H: ${height_remaining_in_container}, updating fontSize: ${fontSize.toFixed(2)}`);
-	// 		projects_tag.style.fontSize = `${fontSize}rem`;
-	// 		// projects_tag.style.lineHeight = `${lineHeight}`;
-	// 	}
-
-	// }
-	function keydown(event) {
+	function keydown({key}) {
 		// console.log(event);
-		switch (event.key) {
+		switch (key) {
 			case 'ArrowLeft':
 			case 'k':
 				clearInterval(intervalID);
+				intervalID = null;
 				prev();
 				break;
 			case 'ArrowRight':
 			case 'j':
 				clearInterval(intervalID);
+				intervalID = null;
 				next();
 				break;
 			case 'ArrowDown':
 			case 'l':
 				let { slug } = projects[$work_index];
 				goto(`/work/${slug}`);
-				console.log('navigate to project TODO');
 				break;
 		}
 	}
 
-	beforeUpdate(() => {
-		let active_a_tag = document.getElementsByClassName("active")[0];
-		active_a_tag.scrollIntoView({block: "center"});
-	})
+	// beforeUpdate(() => {
+	// 	let active_a_tag = document.getElementsByClassName("active")[0];
+	// 	active_a_tag.scrollIntoView({block: "center"});
+	// })
 </script>
 
 <svelte:window on:keydown|preventDefault={keydown} />
 
-<main  bind:offsetHeight={main_height}>
+<main>
 	{#each projects as { preview }, index}
 		{#key index}
 			{#if index == $work_index}
@@ -137,24 +119,29 @@
 			{/if}
 		{/key}
 	{/each}
-	<nav bind:this={container_tag}>
+	<div class="project-container" bind:this={container_tag}>
 		<ol
 			class="projects primary"
-			bind:offsetHeight={projects_height}
+			bind:offsetHeight={projects_height}	
 			use:textfit={{
 				mode: 'multi',
 				update: projects_height,
-				parent: container_tag
+				parent: container_tag,
+				onReady: () => {
+					console.log(`Textfit Ready: projects_height: ${projects_height}, container: ${container_tag.offsetHeight}`)
+				}
 			}}
 		>
 			{#each projects as { name, slug }, index}
 				<li on:mouseenter={() => mouseenter(index)} on:mouseleave={() => mouseleave(index)}>
 					<a class:active={index == $work_index} href={`/work/${slug}`}>{name}</a>
-					<Circle width="20px" height="20px" />
+					{#if index < projects.length - 1}
+						<Circle width=".5em" height=".5em" />
+					{/if}
 				</li>
 			{/each}
 		</ol>
-	</nav>
+	</div>
 </main>
 
 <style>
@@ -164,8 +151,9 @@
 		/* max-width: 1300px; */
 		/* margin: 0 auto; */
 		padding: 0 var(--padding);
-		padding-bottom: var(--padding);
+		margin-bottom: var(--padding);
 		/* flex: 1 1 0; */
+		/* overflow: hidden; */
 
 		display: grid;
 		gap: var(--padding);
@@ -177,9 +165,11 @@
 		font-size: 2rem;
 		/* font-size: clamp(1rem, 4vw, 3.2rem); */
 	}
-	nav {
+	.project-container {
 		height: 100%;
-		overflow-y: scroll;
+		display: flex;
+		align-items: center;
+		justify-items: center;
 	}
 	.sizer {
 		grid-row: 1 / 2;

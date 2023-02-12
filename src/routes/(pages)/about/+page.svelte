@@ -1,6 +1,4 @@
 <script>
-	// import Circle from '$icons/circle.svg?component';
-	import robothead from "$icons/robot-head.svg?url";
 	import Circle from "$components/Circle.svelte";
 </script>
 
@@ -22,7 +20,6 @@
 	<!-- <img src="https://placekitten.com/270/200" alt="placeholder" /> -->
 </main>
 
-<!-- <RobotHead width="400vw" height="auto" id="robot-head" color="var(--international-orange)" style="position: absolute; top: 400px; transform: rotate(30deg)"/> -->
 <style>
 	.background {
 		flex: 1;
@@ -30,7 +27,7 @@
 		padding: var(--padding);
 
 		background-color: var(--white);
-		background-image: url({robothead});
+		background-image: url("/robot-head-angled.svg");
 		background-repeat: no-repeat;
 		background-position-x: 15vw;
 		background-size: cover;

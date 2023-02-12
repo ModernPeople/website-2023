@@ -92,6 +92,7 @@
 	}
 
 	aside {
+		background-color: var(--international-orange);
 		position: absolute;
 		left: -500px;
 		transition: all .25s;

@@ -2,7 +2,7 @@
     import { page } from '$app/stores';
     $: currentPath = $page.url.pathname;
 
-    import Circle from "$icons/circle.svg?component";
+    import Circle from "$components/Circle.svelte"
 
     const items = [
         {path: "/work", title: "Work"},
@@ -22,7 +22,7 @@
             </li>
         {/each}
         <li>
-            <a href="https://medium.com/@ModernPeople" target="_blank" title="Modern People on Medium">Press…</a>
+            <a href="https://medium.com/@ModernPeople" target="_blank" rel="noreferrer" title="Modern People on Medium">Press…</a>
         </li>
     </ol>
 </nav>

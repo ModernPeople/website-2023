@@ -1,9 +1,9 @@
 <script>
-    import Circle from "$icons/circle.svg?component";
+    import Circle from "$components/Circle.svelte";
 </script>
 
 <main>
-	<Circle height="20px" width="20px" color="var(--international-orange)"/>
+	<Circle color="var(--international-orange)"/>
 	
 	<p class="primary" style="text-transform: uppercase;">
 		<a href="mailto:hello@modernpeople.io">hello@<br />modernpeople.io</a>

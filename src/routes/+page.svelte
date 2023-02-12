@@ -1,25 +1,21 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-    import { browser } from '$app/environment';
-	import { fade } from 'svelte/transition';
+	import { onMount } from 'svelte';
+	import { fade, draw } from 'svelte/transition';
 
 	// import PageTransition from '$lib/components/PageTransition.svelte';
 	// import { PageTransition } from 'sveltekit-page-transitions'
 
-	import LogotypeColor from "$icons/logotype-color.svg?component";
+	import LogotypeColor from '$icons/logotype-color.svg?component';
 
-	if (browser) {
-		setTimeout(() => {
-			goto('/work');
-		}, 500);
-	}
+	onMount(() => {
+		setTimeout(() => goto('/work'), 500);
+	});
 </script>
 
-
-<div class="container" transition:fade>
-	<LogotypeColor style="max-width: max(200px, 50vw);"/>
+<div class="container" out:fade={{duration: 500}}>
+	<LogotypeColor style="max-width: max(200px, 50vw);" />
 </div>
-
 
 <style>
 	.container {
