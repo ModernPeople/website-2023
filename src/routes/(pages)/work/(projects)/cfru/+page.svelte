@@ -11,12 +11,12 @@
 	import still5 from './still-5.png?run';
 	import still6 from './still-6.png?run';
 	import still7 from './still-7.png?run';
-	import still8 from './still-8.png?run';
-	import still9 from './still-9.png?run';
-	import still10 from './still-10.png?run';
-	import still11 from './still-11.png?run';
-	import still12 from './still-12.png?run';
-	import still13 from './still-13.png?run';
+	// import still8 from './still-8.png?run';
+	// import still9 from './still-9.png?run';
+	// import still10 from './still-10.png?run';
+	// import still11 from './still-11.png?run';
+	// import still12 from './still-12.png?run';
+	// import still13 from './still-13.png?run';
 	import still14 from './still-14.png?run';
 </script>
 

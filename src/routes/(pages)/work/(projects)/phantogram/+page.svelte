@@ -3,19 +3,19 @@
 
 	import phantogram from './Phantogram.jpg?run';
 
-	import layer1 from './Layer 10.png?run';
-	import layer2 from './Layer 20.png?run';
-	import layer3 from './Layer 30.png?run';
-	import layer4 from './Layer 40.png?run';
-	import layer5 from './Layer 50.png?run';
-	import layer6 from './Layer 60.png?run';
-	import layer7 from './Layer 70.png?run';
-	import layer8 from './Layer 80.png?run';
-	import layer9 from './Layer 90.png?run';
-	import layer10 from './Layer 100.png?run';
-	import layer11 from './Layer 110.png?run';
-	import layer12 from './Layer 120.png?run';
-	import layer13 from './Layer 130.png?run';
+	import layer1 from './layer-10.png?run';
+	import layer2 from './layer-20.png?run';
+	import layer3 from './layer-30.png?run';
+	// import layer4 from './layer-40.png?run';
+	// import layer5 from './layer-50.png?run';
+	// import layer6 from './layer-60.png?run';
+	// import layer7 from './layer-70.png?run';
+	// import layer8 from './layer-80.png?run';
+	// import layer9 from './layer-90.png?run';
+	// import layer10 from './layer-100.png?run';
+	// import layer11 from './layer-110.png?run';
+	// import layer12 from './layer-120.png?run';
+	// import layer13 from './layer-130.png?run';
 	
 </script>
 
