@@ -25,7 +25,7 @@
 		font-size: 1rem;
 		text-transform: uppercase;
 
-		color: var(--white);
+		color: var(--fg);
 		background-color: var(--international-orange);
 	}
 

@@ -1,52 +1,63 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { flip } from 'svelte/animate';
-	import { crossfade, fade } from 'svelte/transition';
+	import { crossfade, fade, blur } from 'svelte/transition';
 	import { textfit } from 'svelte-textfit';
 	import { work_index } from '../../../stores';
 	const [send, receive] = crossfade({ duration: 500 });
 
-	import Circle from "$components/Circle.svelte";
+	import Circle from '$components/Circle.svelte';
 
 	import HbomaxPreview from './(projects)/hbomax/Preview.svelte';
 	import CFRUPreview from './(projects)/cfru/Preview.svelte';
 	import SiriusXMPreview from './(projects)/siriusxm/Preview.svelte';
 	import PhantogramPreview from './(projects)/phantogram/Preview.svelte';
-	import { onMount, afterUpdate, beforeUpdate, onDestroy } from 'svelte';
+	import { onMount, afterUpdate, beforeUpdate, onDestroy, type ComponentType } from 'svelte';
 	import { updated } from '$app/stores';
+	import PlaceholderPreview from './PlaceholderPreview.svelte';
 
-	let projects = [
+	type Project = {
+		slug: string,
+		name: string,
+		preview?: ComponentType
+	}
+	let projects: Project[] = [
 		{ slug: 'siriusxm', name: 'SiriusXM', preview: SiriusXMPreview },
 		{ slug: 'hbomax', name: 'HBO MAX', preview: HbomaxPreview },
-		{ slug: 'vice', name: 'Vice', preview: null },
-		{ slug: 'kblinka', name: 'Kblinka', preview: null },
-		{ slug: 'nytimes', name: 'New York Times', preview: null },
-		{ slug: 'smashfly-x', name: 'Smashfly X', preview: null },
-		{ slug: 'ted', name: 'TED', preview: null },
-		{ slug: 'ici', name: 'ICI', preview: null },
-		{ slug: 'participants', name: 'Participants', preview: null },
+		{ slug: 'vice', name: 'Vice' },
+		{ slug: 'kblinka', name: 'Kblinka' },
+		{ slug: 'nytimes', name: 'New York Times' },
+		{ slug: 'smashfly-x', name: 'Smashfly X' },
+		{ slug: 'ted', name: 'TED' },
+		{ slug: 'ici', name: 'ICI' },
+		{ slug: 'participants', name: 'Participants' },
 		{ slug: 'phantogram', name: 'Phantogram', preview: PhantogramPreview },
-		{ slug: 'tinashe', name: 'Tinashe', preview: null },
-		{ slug: 'grace-mitchell', name: 'Grace Mitchell', preview: null },
-		{ slug: 'bright-and-guilty', name: 'Bright & Guilty', preview: null },
-		{ slug: 'raw-paper-records', name: 'Raw Paper Records', preview: null },
-		{ slug: 'tcmb', name: 'TCMB', preview: null },
-		{ slug: 'portalheads', name: 'Portalheads', preview: null },
-		{ slug: 'animist', name: 'Animist', preview: null },
-		{ slug: 'sierra-club', name: 'Sierra Club', preview: null },
-		{ slug: 'doit', name: 'Do It', preview: null },
-		{ slug: 'ted-ed', name: 'TED Ed', preview: null }
-	];
+		{ slug: 'tinashe', name: 'Tinashe' },
+		{ slug: 'grace-mitchell', name: 'Grace Mitchell' },
+		{ slug: 'bright-and-guilty', name: 'Bright & Guilty' },
+		{ slug: 'raw-paper-records', name: 'Raw Paper Records' },
+		{ slug: 'tcmb', name: 'TCMB' },
+		{ slug: 'portalheads', name: 'Portalheads' },
+		{ slug: 'animist', name: 'Animist' },
+		{ slug: 'sierra-club', name: 'Sierra Club' },
+		{ slug: 'doit', name: 'Do It' },
+		{ slug: 'ted-ed', name: 'TED Ed' }
+	].map((project: Project) => {
+		if (!project.preview) {
+			project.preview = PlaceholderPreview;
+		}
+		return project;
+	});
 
 	/* Cycling animation */
-	let intervalID = null;
+	let intervalID: any | undefined = undefined;
 
-	onMount(start_cycling)
+	// onMount(start_cycling)
 	onDestroy(() => {
 		clearInterval(intervalID);
-		intervalID = null;
-	})
+		intervalID = undefined;
+	});
 
 	function start_cycling() {
 		clearInterval(intervalID);
@@ -66,19 +77,20 @@
 		$work_index = ($work_index + 1) % projects.length;
 	}
 
-	function mouseenter(index) {
+	function mouseenter(index: number) {
 		clearInterval(intervalID);
 		intervalID = null;
 		$work_index = index;
 	}
-	function mouseleave(_) {
+	function mouseleave(_: any) {
 		start_cycling();
 	}
 
 	let container_tag = null;
-	let projects_height = 0;
+	let project_container_height = 0;
+	let project_container_width = 0;
 
-	function keydown({key}) {
+	function keydown({ key }: KeyboardEvent) {
 		// console.log(event);
 		switch (key) {
 			case 'ArrowLeft':
@@ -98,6 +110,10 @@
 				let { slug } = projects[$work_index];
 				goto(`/work/${slug}`);
 				break;
+			case 'ArrowUp':
+			case 'h':
+				goto(`/work/${slug}`);
+				break;
 		}
 	}
 
@@ -111,98 +127,137 @@
 
 <main>
 	{#each projects as { preview }, index}
-		{#key index}
-			{#if index == $work_index}
-				<div class="sizer" transition:fade={{ duration: 300 }}>
+		{#if index == $work_index}
+			<div class="preview-container">
+				<div class="sizer" transition:fade|local={{ duration: 500 }}>
 					<svelte:component this={preview} />
 				</div>
-			{/if}
-		{/key}
+			</div>
+		{/if}
 	{/each}
-	<div class="project-container" bind:this={container_tag}>
-		<ol
+	<div
+		class="project-container"
+		bind:this={container_tag}
+		bind:offsetHeight={project_container_height}
+		bind:offsetWidth={project_container_width}
+	>
+		<div
 			class="projects primary"
-			bind:offsetHeight={projects_height}	
 			use:textfit={{
 				mode: 'multi',
-				update: projects_height,
-				parent: container_tag,
-				onReady: () => {
-					console.log(`Textfit Ready: projects_height: ${projects_height}, container: ${container_tag.offsetHeight}`)
-				}
+				min: 12,
+				max: 56,
+				update: { project_container_height, project_container_width },
+				parent: container_tag
+				// onReady: () => {
+				// 	console.log(`Textfit Ready: projects_height:, container: ${project_container_height}`);
+				// }
 			}}
 		>
 			{#each projects as { name, slug }, index}
-				<li on:mouseenter={() => mouseenter(index)} on:mouseleave={() => mouseleave(index)}>
-					<a class:active={index == $work_index} href={`/work/${slug}`}>{name}</a>
-					{#if index < projects.length - 1}
-						<Circle width=".5em" height=".5em" />
-					{/if}
-				</li>
+				<a
+					href={`/work/${slug}`}
+					class:active={index == $work_index}
+					on:mouseenter={() => mouseenter(index)}
+					on:mouseleave={() => mouseleave(index)}>{name}</a
+				>
+				{#if index < projects.length - 1}
+					<Circle width=".5em" height=".5em" />
+				{/if}
+				&hairsp;
 			{/each}
-		</ol>
+		</div>
 	</div>
 </main>
 
 <style>
 	main {
-		/* height: 100%; */
-		width: 100%;
-		/* max-width: 1300px; */
-		/* margin: 0 auto; */
+		height: 100%;
+		/* max-height: 100%; */
+		/* width: 100%; */
+		max-width: 2000px;
+		/* margin-right: auto; */
+		margin: 0 auto;
 		padding: 0 var(--padding);
-		margin-bottom: var(--padding);
+		padding-bottom: var(--padding);
 		/* flex: 1 1 0; */
 		/* overflow: hidden; */
 
 		display: grid;
 		gap: var(--padding);
 		align-items: start;
-		grid-template-columns: 1fr;
-		grid-template-rows: 
-			50%
-			50%;
+		grid-template-areas: 
+			"preview"
+			"projects";
+		grid-auto-flow: row;
+		grid-auto-rows: 1fr;
+		grid-auto-columns: 1fr;
+		
 		font-size: 2rem;
-		/* font-size: clamp(1rem, 4vw, 3.2rem); */
+	}
+	main > * {
+		overflow: auto;
+	}
+	.preview-container {
+		grid-area: preview;
+		height: 100%;
+		overflow-y: hidden;
+		/* position: relative; */
 	}
 	.project-container {
+		grid-area: projects;
+		/* flex: 1 0 50%; */
 		height: 100%;
 		display: flex;
 		align-items: center;
-		justify-items: center;
+		/* justify-items: center; */
 	}
 	.sizer {
+		/* position: absolute; */
+		/* flex: 1 0 50%; */
 		grid-row: 1 / 2;
 		grid-column: 1 / 2;
 		height: 100%;
 		overflow-y: hidden;
 	}
 
-	ol.projects {
+	.projects {
+		height: 100%;
+		margin: 0;
 		line-height: 1.12;
 		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
+		flex-flow: row wrap;
+		align-items: center;
+		align-content: space-between;
 		column-gap: 0.35em;
 	}
-	li {
+
+	.projects a {
+		white-space: nowrap;
+		will-change: color;
+		/* transition: color 0.6s ease-out; */
+	}
+
+	/* li {
 		display: flex;
 		align-items: center;
 		column-gap: 0.35em;
 	}
 	li a {
-		white-space: nowrap;
-		transition: color 0.5s ease-out;
+		
 	}
+	li a :global(svg) {
+		flex-shrink: 0;
+	} */
 	.active {
 		color: var(--international-orange);
-		transition-duration: 0s;
+		/* transition-duration: 0s; */
 	}
 
 	@media (min-width: 768px) {
 		main {
-			grid-template-columns: repeat(2, 1fr);
-			grid-template-rows: 1fr;
+			grid-auto-flow: column;
+			grid-template-areas: "preview projects";
 		}
 	}
 </style>

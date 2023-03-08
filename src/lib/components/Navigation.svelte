@@ -17,7 +17,7 @@
             <li>
                 <a on:click class:active={currentPath.startsWith(item.path)} href={item.path}>{item.title}</a>
                 {#if currentPath.startsWith(item.path)}
-                    <Circle width=".65em" height=".65em" color="var(--black)"/>
+                    <Circle width=".65em" height=".65em" color="var(--fg)"/>
                 {/if}
             </li>
         {/each}
@@ -34,7 +34,7 @@
 		padding-top: 3em;
 		padding-right: 3em;
 		
-        color: var(--white);
+        color: var(--bg);
 		background-color: var(--international-orange);
         
         font-size: clamp(38px, 6vmin, 96px);
@@ -53,6 +53,6 @@
 	}
 
 	nav .active {
-		color: var(--black);
+		color: var(--fg);
 	}
 </style>

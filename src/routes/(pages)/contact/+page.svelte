@@ -3,7 +3,9 @@
 </script>
 
 <main>
-	<Circle color="var(--international-orange)"/>
+	<p class="primary">
+		<Circle color="var(--international-orange)"/>
+	</p>
 	
 	<p class="primary" style="text-transform: uppercase;">
 		<a href="mailto:hello@modernpeople.io">hello@<br />modernpeople.io</a>

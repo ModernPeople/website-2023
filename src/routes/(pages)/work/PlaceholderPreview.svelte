@@ -1,0 +1,1 @@
+<img src="https://placekitten.com/302/201" alt="placeholder" >

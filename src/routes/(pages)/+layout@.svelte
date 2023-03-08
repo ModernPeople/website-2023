@@ -39,7 +39,7 @@
 		height: 100vh;
 		height: -webkit-fill-available;
 		max-height: -webkit-fill-available;
-		background-color: var(--white);
+		background-color: var(--bg);
 
 		gap: 0;
 
@@ -77,7 +77,8 @@
 		align-items: center;
 		justify-content: space-around;
 
-		background-color: var(--white);
+		color: inherit;
+		/* background-color: inherit; */
 
 		/* Grid */
 		grid-area: header;
@@ -106,15 +107,21 @@
 	.svg-button {
 		z-index: 200;
 		position: absolute;
-		left: var(--padding);
-		width: max(var(--padding), 1.5rem);
+		padding: calc(var(--padding) / 2);
+		left: calc(var(--padding) / 2);
+		/* width: calc(max(var(--padding), 1.5rem) + var(--padding)); */
 		height: auto;
+		cursor: pointer;
+		color: inherit;
+		opacity: 1.0;
 	}
 	.svg-button:hover {
 		/* margin: -.5rem; */
 		/* padding: .5rem; */
-		/* background-color: var(--light-gray); */
-		color: var(--black-bean-burgandy);
+		/* background-color: var(--international-orange); */
+		/* color: var(--black-bean-burgandy); */
+		opacity: .67;
+		/* box-shadow: 0px 0px 5px black; */
 	}
 /* 
 	@media (min-width: 768px) {

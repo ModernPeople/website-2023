@@ -3,7 +3,9 @@
 </script>
 
 <main class="background">
-	<Circle color="var(--international-orange)" />
+	<p class="primary">
+		<Circle color="var(--international-orange)" />
+	</p>
 
 	<p class="primary">
 		We are an interdisciplinary design studio creating the future with bold and functional visual
@@ -26,7 +28,7 @@
 
 		padding: var(--padding);
 
-		background-color: var(--white);
+		background-color: var(--bg);
 		background-image: url("/robot-head-angled.svg");
 		background-repeat: no-repeat;
 		background-position-x: 15vw;
