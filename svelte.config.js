@@ -3,6 +3,7 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 
 // import importAssets from 'svelte-preprocess-import-assets'
 
+const dev = process.argv.includes('dev');
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -16,6 +17,9 @@ const config = {
 	],
 	kit: {
 		adapter: adapter(),
+		paths: {
+			base: dev ? '' : '/website-2023',
+		},
 		alias: {
 			'$icons': 'src/icons',
 			'$components/*': 'src/lib/components/*',
