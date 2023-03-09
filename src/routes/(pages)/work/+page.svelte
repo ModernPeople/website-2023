@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { flip } from 'svelte/animate';
 	import { crossfade, fade, blur } from 'svelte/transition';
 	import { textfit } from 'svelte-textfit';
@@ -108,11 +109,11 @@
 			case 'ArrowDown':
 			case 'l':
 				let { slug } = projects[$work_index];
-				goto(`/work/${slug}`);
+				goto(`${base}/work/${slug}`);
 				break;
 			case 'ArrowUp':
 			case 'h':
-				goto(`/work/${slug}`);
+				// TODO: open navigation maybe?
 				break;
 		}
 	}
@@ -156,7 +157,7 @@
 		>
 			{#each projects as { name, slug }, index}
 				<a
-					href={`/work/${slug}`}
+					href={`${base}/work/${slug}`}
 					class:active={index == $work_index}
 					on:mouseenter={() => mouseenter(index)}
 					on:mouseleave={() => mouseleave(index)}>{name}</a

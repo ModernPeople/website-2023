@@ -18,6 +18,8 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		paths: {
+			relative: true,
+			// for Github Pages compatibility
 			base: dev ? '' : '/website-2023',
 		},
 		alias: {

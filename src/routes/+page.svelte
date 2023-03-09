@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { fade, draw } from 'svelte/transition';
 
@@ -9,7 +10,7 @@
 	import LogotypeColor from '$icons/logotype-color.svg?component';
 
 	const show_splashscreen_for_ms = 500;
-	onMount(() => setTimeout(() => goto('/work'), show_splashscreen_for_ms));
+	onMount(() => setTimeout(() => goto(`${base}/work`), show_splashscreen_for_ms));
 </script>
 
 <div class="container" out:fade={{ duration: 500 }}>

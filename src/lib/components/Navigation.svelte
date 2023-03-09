@@ -1,22 +1,23 @@
 <script lang="ts">
     import { page } from '$app/stores';
+    import { base } from '$app/paths';
     $: currentPath = $page.url.pathname;
 
     import Circle from "$components/Circle.svelte"
 
     const items = [
-        {path: "/work", title: "Work"},
-        {path: "/about", title: "About"},
-        {path: "/contact", title: "Contact"},
+        {path: `${base}/work`, title: "Work"},
+        {path: `${base}/about`, title: "About"},
+        {path: `${base}/contact`, title: "Contact"},
     ]
 </script>
 
 <nav>
     <ol>
-        {#each items as item}
+        {#each items as {path, title}}
             <li>
-                <a on:click class:active={currentPath.startsWith(item.path)} href={item.path}>{item.title}</a>
-                {#if currentPath.startsWith(item.path)}
+                <a on:click class:active={currentPath.startsWith(path)} href={path}>{title}</a>
+                {#if currentPath.startsWith(path)}
                     <Circle width=".65em" height=".65em" color="var(--fg)"/>
                 {/if}
             </li>

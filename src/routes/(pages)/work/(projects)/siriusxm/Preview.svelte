@@ -1,4 +1,5 @@
 <script>
+    import { base } from '$app/paths';
     import Img from '@zerodevx/svelte-img';
 
     // import gif1 from '/static/SXM_1.gif';
@@ -13,7 +14,7 @@
 </script>
 
 
-<img src={"/SXM_1.gif"} alt="still-1" />
+<img src={`${base}/SXM_1.gif`} alt="still-1" />
 <!-- <div class="images">
     <Img src={still1} alt="still-1" />
     <Img src={still2} alt="still-2" />
