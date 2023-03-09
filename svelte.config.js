@@ -18,7 +18,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		paths: {
-			relative: true,
+			relative: false,
 			// for Github Pages compatibility
 			base: dev ? '' : '/website-2023',
 		},

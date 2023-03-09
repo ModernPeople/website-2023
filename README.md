@@ -78,4 +78,17 @@ Projects on the Modern People website show up in two spaces:
 - as a preview on the main `/work` page
 - as a set of pages of deep dive on the project-specific deep dives.
 
-Both of these are stored in one subfolder, so they can easily use the same components and assets.
+Both of these are stored in one subfolder, so they can easily use the same components and assets:
+Deep dive: `src/routes/(pages)/work/(projects)/[project slug]/+page.svelte`
+Preview: `src/routes/(pages)/work/(projects)/[project slug]/Preview.svelte`
+
+The Preview component also needs to be imported in teh main `/work` page:
+
+```ts
+import PhantogramPreview from './(projects)/phantogram/Preview.svelte';
+…
+let projects: Project[] = [
+		{ slug: 'siriusxm', name: 'SiriusXM', preview: SiriusXMPreview },
+        …
+];
+```
