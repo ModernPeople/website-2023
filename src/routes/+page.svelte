@@ -8,12 +8,11 @@
 
 	import LogotypeColor from '$icons/logotype-color.svg?component';
 
-	onMount(() => {
-		setTimeout(() => goto('/work'), 500);
-	});
+	const show_splashscreen_for_ms = 500;
+	onMount(() => setTimeout(() => goto('/work'), show_splashscreen_for_ms));
 </script>
 
-<div class="container" out:fade={{duration: 500}}>
+<div class="container" out:fade={{ duration: 500 }}>
 	<LogotypeColor style="max-width: max(200px, 50vw);" />
 </div>
 

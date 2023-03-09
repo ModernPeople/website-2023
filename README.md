@@ -2,6 +2,10 @@
 
 This is a reimagining of the modernpeople website in SvelteKit. 
 
+## Repository 
+
+We store image and video assets in this repository using [Git LFS](https://git-lfs.github.com/). For local development, please follow the link to setup.
+
 ## Setup
 
 As a "modern JS application", development setup is slightly involved. If you're not used to local web development, we recomend you use a hosted, cloud-based workspace such as Github Code Spaces.
@@ -61,9 +65,17 @@ Possible solutions:
 - Consult the installation documentation: https://sharp.pixelplumbing.com/install
 ```
 
-If you have any idea how to fix this — maybe by finding a way to run `sharp` on Stackblitz's Web Container architecture, or maybe by allowing to run in a mode in which images aren't downscaled dynamically so we don;t need `sharp`; please let us know!
+If you have any idea how to fix this — maybe by finding a way to run `sharp` on Stackblitz's Web Container architecture, or maybe by allowing to run in a mode in which images aren't downscaled dynamically so we don't need `sharp`; please let us know!
 
 
-#### Code Spaces, on Github infrastructure
+#### Codespaces, on Github infrastructure
 
-…trying out atm.
+On the [Github repo overview page](https://github.com/ModernPeople/website-2023) you can click the green Code button, select the "Codespaces" tab instead of the "local" one. This should work out of the box with the configured devcontainer.json image, but will sometimes give me trouble were I can't view the running app in my browser; something goes wrong on Github's end wrt to port forwarding; it just hangs forever instead of connecting. I've tried switching to publicly visible previews instead, and adding `-- --host` to my `npm run dev` script.
+
+## Adding a new project
+
+Projects on the Modern People website show up in two spaces: 
+- as a preview on the main `/work` page
+- as a set of pages of deep dive on the project-specific deep dives.
+
+Both of these are stored in one subfolder, so they can easily use the same components and assets.
