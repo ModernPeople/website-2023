@@ -1,11 +1,12 @@
-<script>
+<script lang="ts">
 	import { goto } from '$app/navigation';
+    import { base } from '$app/paths';
 
     // import { browser } from '$app/environment';
     import { onMount } from 'svelte';
     let index = 0;
 
-    let pages = [];
+    let pages: HTMLElement[] = [];
     let num_pages = 0;
 
     onMount(async () => {
@@ -14,16 +15,15 @@
         num_pages = pages.length;
 
         const container = document.getElementById("pages");
-        const intersectionOptions = {
+        const intersectionOptions: IntersectionObserverInit = {
             root: container,
             threshold: 1.0,
         }
 
-        function intersectionCallback(entries, observer) {
+        function intersectionCallback(entries: IntersectionObserverEntry[], observer: IntersectionObserver) {
             for (const entry of entries) {
                 if (entry.intersectionRatio >= 1.0) {
-                    // console.log(entry, pages)
-                    let entry_index = pages.indexOf(entry.target);
+                    let entry_index = pages.indexOf(entry.target as HTMLElement);
                     if (entry_index >= 0) {
                         index = entry_index;
                     } else {
@@ -43,18 +43,22 @@
     function prev() {
         index = Math.max(0, index-1);
         let page = document.getElementById(`page-${index+1}`);
-        console.log(page);
-        page.scrollIntoView();
+        if (page) {
+            console.log(page);
+            page.scrollIntoView();
+        }
     }
     function next() {
         index = Math.min(num_pages-1, index+1);
         let page = document.getElementById(`page-${index+1}`);
-        console.log(page);
-        page.scrollIntoView();
+        if (page) {
+            console.log(page);
+            page.scrollIntoView();
+        }
     }
-    function keydown(event) {
+    function keydown({key}: KeyboardEvent) {
         // console.log(event);
-        switch (event.key) {
+        switch (key) {
             case "ArrowLeft":
                 prev();
                 break;
@@ -62,7 +66,7 @@
                 next();
                 break;
             case "ArrowUp":
-                goto("/work");
+                goto(`${base}/work`);
                 break;
         }
     }

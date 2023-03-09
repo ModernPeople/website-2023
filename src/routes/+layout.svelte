@@ -5,9 +5,6 @@
 	import './brand-colors.css';
 	// import '@mux/mux-player';
 
-	// import { PageTransitionController, fade } from 'sveltekit-page-transitions'
 </script>
 
-<!-- <PageTransitionController transition={fade}>  -->
-	<slot></slot>
-<!-- </PageTransitionController> -->
+<slot></slot>
