@@ -2,17 +2,42 @@
 
 This is a reimagining of the modernpeople website in SvelteKit. 
 
+
+
 ## Repository 
 
 We store image and video assets in this repository using [Git LFS](https://git-lfs.github.com/). For local development, please follow the link to setup.
 
 ## Setup
 
-As a "modern JS application", development setup is slightly involved. If you're not used to local web development, we recomend you use a hosted, cloud-based workspace such as Github Code Spaces.
+As a "modern JS application", development setup is slightly involved. If you're not used to local web development, we recomend you use a hosted, cloud-based workspace such as Github Code Spaces. Ironically they're not working out of the box atm though. :|
 
 ### Developing
 
-Once you've installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+First, ensure you have a node-based JS development stack. You can [follow these instructions](https://nodejs.org/en/) to install Node locally. On a Mac, you can install this using [homebrew](https://brew.sh):
+
+```bash
+brew install node
+```
+
+Check out the repository to a local folder, e.g. ~/code:
+
+```bash
+mkdir -p ~/code && cd ~/code
+git clone https://github.com/ModernPeople/website-2023.git
+cd website-2023
+```
+
+Then, inside the project directory, install development dependencies specified in `package.js` using `npm` or an alternative JS package manager such as `pnpm` or `yarn`. (As of 2023-03-14 we're using `npm` in CI, so Ludwig uses `npm` locally, too.)
+
+```bash
+npm install
+
+# or pnpm, yarn, etc
+pnpm install
+yarn install
+```
+That can take a minute, but if it succeeds, you can start a development server:
 
 ```bash
 npm run dev
@@ -23,14 +48,13 @@ npm run dev -- --open
 
 ### Building
 
-To create a production version of your app:
+To create a local production build of the site:
 
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
-
+You can then locally preview the production build with `npm run preview`.
 
 ### Deploying
 
@@ -75,14 +99,25 @@ On the [Github repo overview page](https://github.com/ModernPeople/website-2023)
 ## Adding a new project
 
 Projects on the Modern People website show up in two spaces: 
-- as a preview on the main `/work` page
-- as a set of pages of deep dive on the project-specific deep dives.
+- as a preview on the main `/work` page:
+![preview on main /work page](docs/work-previews.png)
+- as a number of deep dive info snippets shown paginated on the project-specific sub-pages:
+![project deep dive](docs/project-deepdive.png)
 
-Both of these are stored in one subfolder, so they can easily use the same components and assets:
-Deep dive: `src/routes/(pages)/work/(projects)/[project slug]/+page.svelte`
-Preview: `src/routes/(pages)/work/(projects)/[project slug]/Preview.svelte`
+### Per-project folder organization
 
-The Preview component also needs to be imported in teh main `/work` page:
+Both of these are stored in one subfolder per project (e.g. `src/routes/(pages)/work/(projects)/phantogram`), together with any required image assets. For example, in the above screenshots, the 2-by-2 image of screengrabs (`src/routes/(pages)/work/(projects)/phantogram/Phantogram.jpg`) is used in both the preview and in the deepdive. The preview is defined in a file called `Preview.svelte`, the deep dive pages are defined in a file called `+page.svelte`:
+
+- Deep dive: `src/routes/(pages)/work/(projects)/[project slug]/+page.svelte`
+- Preview: `src/routes/(pages)/work/(projects)/[project slug]/Preview.svelte`
+
+Both those files can import shared assets, for example the `Preview.svelte` here is really just this single 2-by-2 image of screengrabs, which is also imported in the deep dive pages:
+
+```ts
+import image from './Phantogram.jpg?run';
+```
+
+The Preview *component* itself then also needs to be imported in the main `/work` page (at `src/routes/(pages)/work/+page.svelte`) and connected to the project slug and name:
 
 ```ts
 import PhantogramPreview from './(projects)/phantogram/Preview.svelte';
@@ -92,3 +127,14 @@ let projects: Project[] = [
         …
 ];
 ```
+
+The `slug` property is used to construct the project URL. (like this: `[domain]/work/[slug]`, e.g. `https://modernpeople.io/work/phantogram`). The name property is used as the project name in the list of projects on the work overview page.
+
+### Reuseable layouts
+
+For common layouts like 2-by-2 images, a column of three images, etc we want to set up resueable CSS classes. These should be defined as `:global()`, not-component level scoped styles in `src/routes/(pages)/work/(projects)/+layout.svelte` so they can be used in all sub-projects without explicit imports. Here's a list of image containers we have so far:
+
+- 2-by-2
+- TBD
+
+While we're in the process of drafting more project-specific layouts, these will be a WIP, to be cleaned up and documented here by Ludwig at a later stage.
