@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	// import { PageTransition } from 'sveltekit-page-transitions'
 	
 	import MenuIcon from "$icons/menu.svg?component";
@@ -13,7 +13,6 @@
 	let sidebar = false;
 </script>
 
-<!-- <PageTransition> -->
 <div class="container">
 	<header>
 		<button on:click={()=> sidebar = !sidebar} class="svg-button">
@@ -23,14 +22,14 @@
 	</header>
 
 	<aside class:sidebar>
-		<Navigation on:click={()=> sidebar = false}/>
+		<Navigation on:click={()=> sidebar=false}/>
 	</aside>
 
 	<slot></slot>
 
 	<Footer/>
 </div>
-<!-- </PageTransition> -->
+
 
 <style>
 
@@ -109,7 +108,7 @@
 		position: absolute;
 		padding: calc(var(--padding) / 2);
 		left: calc(var(--padding) / 2);
-		/* width: calc(max(var(--padding), 1.5rem) + var(--padding)); */
+		width: calc(max(var(--padding), 1.5rem) + var(--padding));
 		height: auto;
 		cursor: pointer;
 		color: inherit;

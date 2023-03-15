@@ -1,18 +1,16 @@
 <script>
-	// export let is_detail_view = false;
+	export let is_detail_view = false;
+	import { options } from "../../stores";
 </script>
 
 <footer>
 	<div>
-		<span class="year">2023&thinsp;+&thinsp;beyond</span>
-		<!-- <ul class="keyboard nolist" title="use arrow keys (or VIM-style hjkl) to navigate the project list">
-			<li>⏴⏵ prev/next</li>
-			{#if is_detail_view}
-				<li>⏶ back</li>
-			{:else}
-				 <li>⏷ detail</li>
+		<span class="year">
+			{#if $options.copyright_glyph_in_footer}
+				<span class="copyright">©</span>
 			{/if}
-		</ul> -->
+			2023&thinsp;+&thinsp;beyond
+		</span>
 	</div>
 	<ol>
 		<li>
@@ -32,6 +30,14 @@
 			>
 		</li>
 	</ol>
+	<!-- <ul class="keyboard nolist" title="use arrow keys (or VIM-style hjkl) to navigate the project list">
+		<li>↔ prev/next</li>
+		{#if is_detail_view}
+			<li>⏶ back</li>
+		{:else}
+			 <li>⏷ detail</li>
+		{/if}
+	</ul> -->
 </footer>
 
 <style>
@@ -39,7 +45,7 @@
 		/* position: fixed; */
 		/* bottom: 0; */
 		width: 100%;
-		z-index: 1;
+		z-index: 200;
 
 		display: flex;
 		gap: var(--padding);
@@ -62,13 +68,18 @@
 		gap: var(--padding);
 	}
 
+	.copyright {
+		position: relative;
+		bottom: 1.5px; /* wtf */
+	}
+
 	.keyboard {
 		display: inline-flex;
 		gap: 1rem;
 		text-transform: lowercase;
-		/* color: var(--black-bean-burgandy); */
 		opacity: .5;
 		cursor: help;
+		white-space: nowrap;
 	}
 	.keyboard:hover {
 		opacity: 1;

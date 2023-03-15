@@ -34,4 +34,8 @@
 		background-position-x: 15vw;
 		background-size: cover;
 	}
+
+	.primary {
+		max-width: 69vw;
+	}
 </style>

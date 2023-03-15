@@ -4,6 +4,7 @@
     $: currentPath = $page.url.pathname;
 
     import Circle from "$components/Circle.svelte"
+    import Options from './Options.svelte';
 
     const items = [
         {path: `${base}/work`, title: "Work"},
@@ -26,6 +27,7 @@
             <a href="https://medium.com/@ModernPeople" target="_blank" rel="noreferrer" title="Modern People on Medium">Press…</a>
         </li>
     </ol>
+    <Options></Options>
 </nav>
 
 <style>
@@ -33,12 +35,17 @@
         height: 100%;
         padding: var(--padding);
 		padding-top: 3em;
-		padding-right: 3em;
+        padding-bottom: 1em;
+		/* padding-right: 3em; */
 		
         color: var(--bg);
 		background-color: var(--international-orange);
         
         font-size: clamp(38px, 6vmin, 96px);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 	}
 
     nav ol {

@@ -26,35 +26,28 @@
 
 <style>
     .images {
-        margin-left: auto;
-        align-self: flex-end;
-        align-content: flex-start;
-        justify-content: end;
-        flex: 1;
-
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-auto-rows: min-content;
-		/* align-content: stretch; */
-        /* justify-items: end; */
-        /* width: 100%; */
         height: 100%;
-        /* display: flex;
-        flex-flow: column wrap; */
+        
+		display: grid;
+        grid-auto-flow: row;
+		grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
 
 		gap: 0.25rem;
-		/* height: 100%; */
 	}
-    /* .images > :global(*) {
-        flex: 1 1 250px;
-    } */
-    /* .images :global(img), */
-    .images :global(picture) {
-        height: 100%;
-        width: auto;
-    }
+
 	.double {
-        /* flex: 2; */
 		grid-column: 1/-1;
+	}
+
+    .images :global(picture) {
+		max-height: 100%;
+	}
+	.images :global(img) {
+		height: 100%;
+	}
+	.images :global(picture) :global(img) {
+		height: 100%;
+		background-size: contain !important;
 	}
 </style>
