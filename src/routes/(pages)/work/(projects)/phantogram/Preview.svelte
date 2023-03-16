@@ -22,6 +22,5 @@
 <Img src={image} alt="stills from Phantogram music video" />
 
 
-<style>
-
-</style>
+<!-- <style>
+</style> -->

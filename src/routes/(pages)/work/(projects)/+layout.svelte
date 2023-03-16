@@ -306,8 +306,9 @@
 		/* object-fit: contain; */
 		/* object-position: center; */
 	}
-	:global(.hero picture),
-	:global(.hero mux-player) {
+	
+	/* :global(.hero mux-player), */
+	:global(.hero picture) {
 		height: 100%;
 	}
 </style>

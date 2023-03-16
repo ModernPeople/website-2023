@@ -21,6 +21,9 @@
 
 <style>
 	.container {
+		/* work around a Chrome rendering issue where part of the image is drawn in an adjusted manner, and a part isn't */
+		--black-bean-burgandy: rgb(68, 0, 0) !important;
+
 		position: fixed;
 		display: grid;
 		width: 100%;

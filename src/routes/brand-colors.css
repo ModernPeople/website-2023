@@ -25,8 +25,8 @@
 @supports (color: color(display-p3 1 1 1)) {
     :root {
         --international-orange: color(display-p3 1 0.31 0);
-        --black-bean-burgandy: color(display-p3 .25 0 0);
-        --arctic-lime: color(display-p3 .85 1 .27);
+        --black-bean-burgandy: color(display-p3 0.25 0 0);
+        --arctic-lime: color(display-p3 0.85 1 0.27);
     }
 }
 

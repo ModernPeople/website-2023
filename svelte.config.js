@@ -19,7 +19,7 @@ const config = {
 		adapter: adapter(),
 		paths: {
 			relative: false,
-			// for Github Pages compatibility
+			// TODO: for Github Pages compatibility, remove once served from custom domain
 			base: dev ? '' : '/website-2023',
 		},
 		alias: {

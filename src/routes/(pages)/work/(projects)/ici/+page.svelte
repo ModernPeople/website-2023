@@ -79,13 +79,13 @@
 		background-size: contain !important;
 	}
 
-	.images {
+	/* .images {
 		justify-self: center;
 		grid-column: 1 / -1;
 
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-	}
+	} */
 
 	/* .images :global(img) {} */
 

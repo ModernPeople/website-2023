@@ -17,6 +17,8 @@
 	import HbomaxPreview from './(projects)/hbomax/Preview.svelte';
 	import SiriusXMPreview from './(projects)/siriusxm/Preview.svelte';
 	import PhantogramPreview from './(projects)/phantogram/Preview.svelte';
+	import KblinkaPreview from './(projects)/kblinka/Preview.svelte';
+
 	import PlaceholderPreview from './PlaceholderPreview.svelte';
 	/* Import Preview components here: */
 
@@ -27,9 +29,9 @@
 	}
 	const projects: Project[] = [
 		{ slug: 'siriusxm', name: 'SiriusXM', preview: SiriusXMPreview },
-		{ slug: 'hbomax', name: 'HBO MAX', preview: HbomaxPreview },
+		{ slug: 'hbomax', name: 'HBO MAX' },
 		{ slug: 'vice', name: 'Vice' },
-		{ slug: 'kblinka', name: 'Kblinka' },
+		{ slug: 'kblinka', name: 'Kblinka', preview: KblinkaPreview },
 		{ slug: 'nytimes', name: 'New York Times' },
 		{ slug: 'smashfly-x', name: 'Smashfly X' },
 		{ slug: 'ted', name: 'TED' },

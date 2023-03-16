@@ -2,6 +2,7 @@
 	"name": "modern-people-website-2023",
 	"version": "0.0.1",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -26,7 +27,6 @@
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
 		"sass": "^1.57.1",
-		"sharp": "^0.31.3",
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
 		"svelte-local-storage-store": "^0.4.0",
@@ -34,7 +34,7 @@
 		"sveltekit-page-transitions": "^0.0.8",
 		"tslib": "^2.4.1",
 		"typescript": "^4.9.3",
-		"vite": "^4.0.0"
-	},
-	"type": "module"
+		"vite": "^4.0.0",
+		"sharp": "^0.31.3"
+	}
 }

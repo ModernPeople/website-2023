@@ -1,5 +1,5 @@
 <script>
-	export let is_detail_view = false;
+	// export let is_detail_view = false;
 	import { options } from "../../stores";
 </script>
 
@@ -73,7 +73,7 @@
 		bottom: 1.5px; /* wtf */
 	}
 
-	.keyboard {
+	/* .keyboard {
 		display: inline-flex;
 		gap: 1rem;
 		text-transform: lowercase;
@@ -83,5 +83,5 @@
 	}
 	.keyboard:hover {
 		opacity: 1;
-	}
+	} */
 </style>
