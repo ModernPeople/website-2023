@@ -2,6 +2,7 @@ import { type Writable, writable } from 'svelte/store';
 import { persisted } from 'svelte-local-storage-store'
 
 export const work_index = writable(0);
+export const work_fontsize = writable(16);
 
 // This is a store of options that can be changed in an in-browser menu
 // Just to showcase ideas during dev

@@ -4,7 +4,7 @@
 
 <section>
 	<h2>dev_options</h2>
-	{#each Object.entries($options) as [key, value], i}
+	{#each Object.keys($options) as key}
 		<!-- {i}, {key}: {value} -->
 		<label>
 			<input type="checkbox" bind:checked={$options[key]} />

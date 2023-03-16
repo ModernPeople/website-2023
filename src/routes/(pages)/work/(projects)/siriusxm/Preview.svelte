@@ -2,8 +2,8 @@
     import { base } from '$app/paths';
     import Img from '@zerodevx/svelte-img';
 
-    // import gif1 from '/static/SXM_1.gif';
-    // import still2 from './still-2.jpg?run';
+    // import video1 from './SXM_1.mp4?run';
+    // import still2 from './SXM_Event.jpg?run';
     // import still3 from './still-3.jpg?run';
     // import still4 from './still-4.jpg?run';
     // import still5 from './still-5.jpg?run';
@@ -12,25 +12,6 @@
     // import still8 from './still-8.jpg?run';
     // import still9 from './still-9.jpg?run';
 </script>
-
-
-<img src={`${base}/SXM_1.gif`} alt="still-1" />
-<!-- <div class="images">
-    <Img src={still1} alt="still-1" />
-    <Img src={still2} alt="still-2" />
-    <Img src={still3} alt="still-3" />
-    <Img src={still4} alt="still-4" />
-    <div class="double">
-        <Img src={still5} alt="still-5" />
-    </div>
-</div> -->
-
-
-<style>
-    /* :global(img) {
-        width: 100%;
-        height: auto;
-        background-size: contain;
-        background-position: top;
-    } */
-</style>
+<!-- <p>{JSON.stringify(video1)}</p> -->
+<!-- <Img src={video1} alt="SXM Media Ad Animation" /> -->
+<!-- <Img src={still2} alt="still-2" /> -->

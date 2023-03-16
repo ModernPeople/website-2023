@@ -8,15 +8,17 @@
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 
-	import { work_index } from '../../../stores';
+	import { work_index, work_fontsize } from '../../../stores';
 	const [send, receive] = crossfade({ duration: 500 });
 
 	import Circle from '$components/Circle.svelte';
 
+	/* Import Preview components here: */
 	import HbomaxPreview from './(projects)/hbomax/Preview.svelte';
 	import SiriusXMPreview from './(projects)/siriusxm/Preview.svelte';
 	import PhantogramPreview from './(projects)/phantogram/Preview.svelte';
 	import PlaceholderPreview from './PlaceholderPreview.svelte';
+	/* Import Preview components here: */
 
 	type Project = {
 		slug: string,
@@ -42,7 +44,7 @@
 		{ slug: 'portalheads', name: 'Portalheads' },
 		{ slug: 'animist', name: 'Animist' },
 		{ slug: 'sierra-club', name: 'Sierra Club' },
-		{ slug: 'doit', name: 'DO IT' },
+		{ slug: 'doit', name: 'Do It', preview: SiriusXMPreview  },
 		{ slug: 'ted-ed', name: 'TED Ed' }
 	].map((project: Project) => {
 		if (!project.preview) {
@@ -111,15 +113,16 @@
 	let container_tag = null;
 	let project_container_height = 0;
 	let project_container_width = 0;
+	let window_width = 0;
 </script>
 
 
-<svelte:window on:keydown|preventDefault={keydown} />
+<svelte:window on:keydown|preventDefault={keydown} bind:innerWidth={window_width} />
 
 <main>
 	{#each projects as { preview }, index}
 		{#if index == $work_index}
-			<div class="preview-container" transition:fade|local={{ duration: 500 }}>
+			<div class="preview-container">
 				<!-- <div class="sizer" transition:fade|local={{ duration: 500 }}> -->
 				<svelte:component this={preview} />
 				<!-- </div> -->
@@ -129,17 +132,21 @@
 	<div
 		class="project-container"
 		bind:this={container_tag}
-		bind:offsetHeight={project_container_height}
-		bind:offsetWidth={project_container_width}
+		bind:clientHeight={project_container_height}
+		bind:clientWidth={project_container_width}
 	>
 		<div
 			class="projects primary"
 			use:textfit={{
 				mode: 'multi',
-				min: 12,
-				max: 56,
+				min: 16,
+				max: 96,
 				update: { project_container_height, project_container_width },
-				parent: container_tag
+				parent: container_tag,
+				onReady: (fontSize) => {
+					$work_fontsize = fontSize
+					console.log(fontSize)
+				}
 			}}
 		>
 			{#each projects as { name, slug }, index}
@@ -196,7 +203,7 @@
 		/* overflow-y: hidden; */
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
+		justify-content: start;
 	}
 
 	.preview-container :global(picture) {
@@ -226,7 +233,7 @@
 		display: flex;
 		flex-flow: row wrap;
 		align-items: center;
-		align-content: space-between;
+		align-content: start;
 		column-gap: 0.35em;
 	}
 
