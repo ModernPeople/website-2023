@@ -84,24 +84,27 @@
 	}
 
 	/* Keyboard navigation */
-	function keydown({ key }: KeyboardEvent) {
-		switch (key) {
+	function keydown(event: KeyboardEvent) {
+		switch (event.key) {
 			case 'ArrowLeft':
 			case 'k':
 				clearInterval(intervalID);
 				intervalID = undefined;
 				prev();
+				event.stopPropagation();
 				break;
 			case 'ArrowRight':
 			case 'j':
 				clearInterval(intervalID);
 				intervalID = undefined;
 				next();
+				event.stopPropagation();
 				break;
 			case 'ArrowDown':
 			case 'l':
 				let { slug } = projects[$work_index];
 				goto(`${base}/work/${slug}`);
+				event.stopPropagation();
 				break;
 			case 'ArrowUp':
 			case 'h':
@@ -117,7 +120,7 @@
 </script>
 
 
-<svelte:window on:keydown|preventDefault={keydown} bind:innerWidth={window_width} />
+<svelte:window on:keydown={keydown} bind:innerWidth={window_width} />
 
 <main>
 	{#each projects as { preview }, index}
