@@ -125,13 +125,11 @@
 <svelte:window on:keydown={keydown} bind:innerWidth={window_width} />
 
 <main>
-	{#each projects as { preview }, index}
+	{#each projects as { preview, slug }, index}
 		{#if index == $work_index}
-			<div class="preview-container">
-				<!-- <div class="sizer" transition:fade|local={{ duration: 500 }}> -->
+			<a href={`${base}/work/${slug}`} class="preview-container">
 				<svelte:component this={preview} />
-				<!-- </div> -->
-			</div>
+			</a>
 		{/if}
 	{/each}
 	<div
