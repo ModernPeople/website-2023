@@ -1,38 +1,47 @@
 <script lang="ts">
 	// import { PageTransition } from 'sveltekit-page-transitions'
-	
-	import MenuIcon from "$icons/menu.svg?component";
-	import Logotype from "$icons/logotype.svg?component";
+	import { browser } from '$app/environment';
+
+	import MenuIcon from '$icons/menu.svg?component';
+	import Logotype from '$icons/logotype.svg?component';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 
 	// global styles
 	import '../reset.css';
 	import '../global.css';
-	
+
 	let sidebar = false;
+
+	let toggle_sidebar = () => (sidebar = !sidebar);
+	let close_sidebar = () => (sidebar = false);
+	$: if (browser) {
+		if (sidebar) {
+			document.body.addEventListener('click', close_sidebar, {once: true});
+		} else {
+			document.body.removeEventListener('click', close_sidebar)
+		}
+	}
 </script>
 
 <div class="container">
 	<header>
-		<button on:click={()=> sidebar = !sidebar} class="svg-button">
+		<button on:click|stopPropagation={toggle_sidebar} class="svg-button">
 			<MenuIcon />
 		</button>
-		<Logotype width="200" class="logo"></Logotype>
+		<Logotype width="200" class="logo" />
 	</header>
 
 	<aside class:sidebar>
-		<Navigation on:click={()=> sidebar=false}/>
+		<Navigation on:click={close_sidebar}/>
 	</aside>
 
-	<slot></slot>
+	<slot />
 
-	<Footer/>
+	<Footer />
 </div>
 
-
 <style>
-
 	/* Grid */
 	.container {
 		height: 100vh;
@@ -43,12 +52,12 @@
 		gap: 0;
 
 		display: grid;
-		grid-template-areas: 
-			"header"
-			"main"
-			"footer";
-		grid-template-rows: 
-			min-content 
+		grid-template-areas:
+			'header'
+			'main'
+			'footer';
+		grid-template-rows:
+			min-content
 			minmax(0, 1fr)
 			min-content;
 	}
@@ -94,13 +103,14 @@
 	aside {
 		background-color: var(--international-orange);
 		position: absolute;
-		left: -500px;
-		transition: all .25s;
+		left: -100%;
+		min-width: 320px;
+		transition: left 0.5s;
 		height: 100%;
 		z-index: 100;
 	}
 	aside.sidebar {
-		left: 0px
+		left: 0px;
 	}
 
 	.svg-button {
@@ -112,17 +122,17 @@
 		height: auto;
 		cursor: pointer;
 		color: inherit;
-		opacity: 1.0;
+		opacity: 1;
 	}
 	.svg-button:hover {
 		/* margin: -.5rem; */
 		/* padding: .5rem; */
 		/* background-color: var(--international-orange); */
 		/* color: var(--black-bean); */
-		opacity: .67;
+		opacity: 0.67;
 		/* box-shadow: 0px 0px 5px black; */
 	}
-/* 
+	/* 
 	@media (min-width: 768px) {
 		main {
 			display: grid;
