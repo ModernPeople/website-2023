@@ -118,7 +118,7 @@
 		/* margin: -.5rem; */
 		/* padding: .5rem; */
 		/* background-color: var(--international-orange); */
-		/* color: var(--black-bean-burgandy); */
+		/* color: var(--black-bean); */
 		opacity: .67;
 		/* box-shadow: 0px 0px 5px black; */
 	}

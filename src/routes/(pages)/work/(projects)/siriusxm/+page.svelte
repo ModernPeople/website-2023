@@ -88,40 +88,40 @@
 </section>
 
 <section class="page" id="page-6">
-	<div class="quadrants">
-		<!-- <Img src={gif6a}/> -->
-		<!-- <Img src={gif6b}/> -->
-		<!-- <Img src={gif6c}/> -->
-		<!-- <Img src={gif6d}/> -->
-		<mux-player
-			style="--controls: none;"
-			stream-type="on-demand"
-			playback-id="xL16NepCwId01RMVe025WTSxOD7wgxqKTns00XU2MDpOeU"
-			autoplay
-			loop
-		/>
-		<mux-player
-			style="--controls: none;"
-			stream-type="on-demand"
-			playback-id="xL16NepCwId01RMVe025WTSxOD7wgxqKTns00XU2MDpOeU"
-			autoplay
-			loop
-		/>
-		<mux-player
-			style="--controls: none;"
-			stream-type="on-demand"
-			playback-id="xL16NepCwId01RMVe025WTSxOD7wgxqKTns00XU2MDpOeU"
-			autoplay
-			loop
-		/>
-		<mux-player
-			style="--controls: none;"
-			stream-type="on-demand"
-			playback-id="xL16NepCwId01RMVe025WTSxOD7wgxqKTns00XU2MDpOeU"
-			autoplay
-			loop
-		/>
-	</div>
+		<div class="quadrants">
+			<!-- <Img src={gif6a}/> -->
+			<!-- <Img src={gif6b}/> -->
+			<!-- <Img src={gif6c}/> -->
+			<!-- <Img src={gif6d}/> -->
+			<mux-player
+				style="--controls: none;"
+				stream-type="on-demand"
+				playback-id="xL16NepCwId01RMVe025WTSxOD7wgxqKTns00XU2MDpOeU"
+				autoplay
+				loop
+			/>
+			<mux-player
+				style="--controls: none;"
+				stream-type="on-demand"
+				playback-id="xL16NepCwId01RMVe025WTSxOD7wgxqKTns00XU2MDpOeU"
+				autoplay
+				loop
+			/>
+			<mux-player
+				style="--controls: none;"
+				stream-type="on-demand"
+				playback-id="xL16NepCwId01RMVe025WTSxOD7wgxqKTns00XU2MDpOeU"
+				autoplay
+				loop
+			/>
+			<mux-player
+				style="--controls: none;"
+				stream-type="on-demand"
+				playback-id="xL16NepCwId01RMVe025WTSxOD7wgxqKTns00XU2MDpOeU"
+				autoplay
+				loop
+			/>
+		</div>
 	<p class="description">
 		The “PMB” sub brand was built with motion in mind from the ground up. Using the motion
 		principles already laid out in the brand toolkit, Modern People designed and produced 5 content
@@ -130,10 +130,12 @@
 </section>
 
 <section class="page" id="page-7">
-	<div class="column">
-		<Img src={gif7a} />
-		<Img src={gif7b} />
-		<Img src={gif7c} />
+	<div class="center-scaled">
+		<div class="flex-1-3">
+			<Img src={gif7a} />
+			<Img src={gif7b} />
+			<Img src={gif7c} />
+		</div>
 	</div>
 	<p class="description">
 		The “PMB” sub brand was built with motion in mind from the ground up. Using the motion
@@ -144,7 +146,10 @@
 
 <section class="page" id="page-8">
 	<div class="hero">
-		<mux-player stream-type="on-demand" playback-id="nHOLot4wCZ4v1tGBxSF5zgD79RslO61hLZt02u4JaSng" />
+		<mux-player
+			stream-type="on-demand"
+			playback-id="nHOLot4wCZ4v1tGBxSF5zgD79RslO61hLZt02u4JaSng"
+		/>
 	</div>
 	<p class="description">
 		The “PMB” sub brand was built with motion in mind from the ground up. Using the motion
@@ -154,10 +159,12 @@
 </section>
 
 <section class="page" id="page-9">
-	<div class="column">
-		<Img src={img9a} />
-		<Img src={img9b} />
-		<Img src={img9c} />
+	<div class="center-scaled">
+		<div class="flex-1-3">
+			<Img src={img9a} />
+			<Img src={img9b} />
+			<Img src={img9c} />
+		</div>
 	</div>
 	<p class="description">
 		In the same spirit, the motion content was built modularly, with built-in flexibility to
@@ -197,4 +204,24 @@
 		width: 100%;
 		height: 100%;
 	} */
+	.center-scaled {
+		grid-column: 1 / -1;
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		/* gap: inherit; */
+	}
+	.flex-1-3 {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+	.flex-1-3 :global(picture) {
+		height: auto;
+	}
+	.flex-1-3 :global(picture) :global(img) {
+		height: 100%;
+		width: auto;
+	}
 </style>

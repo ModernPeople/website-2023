@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { page } from "$app/stores"; 
 	import { base } from '$app/paths';
 
 	import { onMount } from 'svelte';
@@ -189,10 +190,10 @@
 			/* display: grid; */
 			/* flex-flow: column; */
 		}
-		#pages > :global(*) {
-			/* height: 80vh; */
+		#pages > :global(.page) {
+			/* height: 80vh; */	
 			padding: calc(2 * var(--padding)) var(--padding);
-			border-top: 1px solid var(--light-gray);
+			border-top: 1px solid var(--light-bg);
 		}
 		:global(.images) {
 			max-width: 80vw;
@@ -233,7 +234,7 @@
 
 	:global(.page p) {
 		margin: 0;
-		line-height: 1.3;
+		line-height: 1.5;
 	}
 
 	/* Reuseable styles */

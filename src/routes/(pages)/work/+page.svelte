@@ -175,8 +175,6 @@
 
 	main {
 		height: 100%;
-		/* max-height: 100%; */
-		/* width: 100%; */
 		max-width: 2000px;
 		/* margin-right: auto; */
 		margin: 0 auto;
@@ -219,7 +217,6 @@
 	}
 	.preview-container :global(picture) :global(img) {
 		height: 100%;
-		background-size: contain !important;
 	}
 
 	.project-container {

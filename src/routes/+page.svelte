@@ -22,7 +22,7 @@
 <style>
 	.container {
 		/* work around a Chrome rendering issue where part of the image is drawn in an adjusted manner, and a part isn't */
-		--black-bean-burgandy: rgb(68, 0, 0) !important;
+		--black-bean: rgb(68, 0, 0) !important;
 
 		position: fixed;
 		display: grid;
@@ -30,7 +30,7 @@
 		height: 100%;
 		align-content: center;
 		justify-items: center;
-		background-color: var(--black-bean-burgandy);
+		background-color: var(--black-bean);
 		z-index: 4;
 		cursor: default;
 	}
