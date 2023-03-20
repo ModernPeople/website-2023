@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { page } from "$app/stores"; 
 	import { base } from '$app/paths';
 
 	import { onMount } from 'svelte';
@@ -18,7 +17,7 @@
 		const container = document.getElementById('pages');
 		const intersectionOptions = {
 			root: container,
-			threshold: .99
+			threshold: 0.99
 		} satisfies IntersectionObserverInit;
 
 		function intersectionCallback(entries: IntersectionObserverEntry[], _: IntersectionObserver) {
@@ -45,10 +44,7 @@
 	function prev() {
 		index = Math.max(0, index - 1);
 		let page = document.getElementById(`page-${index + 1}`);
-		if (page) {
-			console.log(page);
-			page.scrollIntoView();
-		}
+		page && page.scrollIntoView();
 	}
 	function next() {
 		if (num_pages === undefined) {
@@ -56,16 +52,13 @@
 		}
 		index = Math.min(num_pages - 1, index + 1);
 		let page = document.getElementById(`page-${index + 1}`);
-		if (page) {
-			console.log(page);
-			page.scrollIntoView();
-		}
+		page && page.scrollIntoView();
 	}
 	function back() {
 		goto(`${base}/work`);
 	}
-	function keydown({ key }: KeyboardEvent) {
-		switch (key) {
+	function keydown(event: KeyboardEvent) {
+		switch (event.key) {
 			case 'ArrowLeft':
 				prev();
 				break;
@@ -75,26 +68,40 @@
 			case 'ArrowUp':
 				back();
 				break;
+			default:
+				return;
 		}
+		event.preventDefault();
 	}
 	function enclosed_number(number: number) {
 		switch (number) {
-			case 0: return "⓪";
-			case 1: return "①";
-			case 2: return "②";
-			case 3: return "③";
-			case 4: return "④";
-			case 5: return "⑤";
-			case 6: return "⑥";
-			case 7: return "⑦";
-			case 8: return "⑧";
-			case 9: return "⑨";
-			default: return ""+number;
+			case 0:
+				return '⓪';
+			case 1:
+				return '①';
+			case 2:
+				return '②';
+			case 3:
+				return '③';
+			case 4:
+				return '④';
+			case 5:
+				return '⑤';
+			case 6:
+				return '⑥';
+			case 7:
+				return '⑦';
+			case 8:
+				return '⑧';
+			case 9:
+				return '⑨';
+			default:
+				return '' + number;
 		}
 	}
 </script>
 
-<svelte:window on:keydown|preventDefault={keydown} />
+<svelte:window on:keydown={keydown} />
 
 <main>
 	<div id="pages">
@@ -116,7 +123,7 @@
 		</button>
 		<span class="page-counter" class:active={num_pages}>
 			{#if $options.enclose_page_numbers}
-				 {enclosed_number(index + 1)} of {enclosed_number(num_pages)}
+				{enclosed_number(index + 1)} of {enclosed_number(num_pages)}
 			{:else}
 				{index + 1} of {num_pages}
 			{/if}
@@ -164,7 +171,7 @@
 	.back::before {
 		content: '↖';
 		margin-right: 0.5rem;
-		margin-left: -.25rem;
+		margin-left: -0.25rem;
 	}
 	.prev::before {
 		content: '←';
@@ -191,7 +198,7 @@
 			/* flex-flow: column; */
 		}
 		#pages > :global(.page) {
-			/* height: 80vh; */	
+			/* height: 80vh; */
 			padding: calc(2 * var(--padding)) var(--padding);
 			border-top: 1px solid var(--light-bg);
 		}
@@ -307,7 +314,7 @@
 		/* object-fit: contain; */
 		/* object-position: center; */
 	}
-	
+
 	/* :global(.hero mux-player), */
 	:global(.hero picture) {
 		height: 100%;
